@@ -1,3 +1,7 @@
+# import game_title for title
+import game_title
+import game_title_test
+
 from time import sleep
 
 # Import Console for console text printing
@@ -91,7 +95,7 @@ class Mustang:
                     print(f"Current speed is {self._speed}")
                     self._nos_use = "x"
             elif self._take_off == "y":
-                 print("You have to take off first.")
+                print("You have to take off first.")
 
             # Check speed
             self.top_speed_situation()
@@ -99,15 +103,20 @@ class Mustang:
         
 
     def pull_over(self):
-        while self._speed > 0:
-            self._speed -= 25
-            if self._speed >=0: 
-                print(self._speed)
-            sleep(.5)
+        #Make sure car has taken off first:
+            if self._take_off == "x":
+                while self._speed > 0:
+                    self._speed -= 25
+                    if self._speed >=0: 
+                        print(self._speed)
+                        sleep(.5)
 
-        self._speed = 0
-        print("Pulled over.")
-        print(f"Current speed is {self._speed}")
+                self._speed = 0
+                print("Pulled over.")
+                print(f"Current speed is {self._speed}")
+            
+            elif self._take_off == "y":
+                print("Very funny. Try taking off first.")
 
     def top_speed_situation(self):
             # if statements to check for top speed situation
@@ -162,18 +171,27 @@ def main():
     # Create object from Car classs
     #car = Car()
     #car.car_name()
+    game_title_test.title()
+    sleep(2)
+    print()
+    print("                A Day At The Track All To Yourself")
+    sleep(3)
 
     # Ask for driver name
-    driver_name = input("What's your name, driver: ")
+    driver_name = input("\nWhat's your name, driver: ")
 
     # Print car inventory and specs
     print(f"\n{driver_name}, here are your car choices:")
+    sleep(1)
     console.print("1 - [bold blue]2012 Mustang Boss 302: Laguna Seca Edition[/bold blue]")
     print("         Horse power: 444    0-60 in: 4.6 secs    Top Speed: 145 mph ")  # Actually 146 mph
+    sleep(1)
     console.print("2 - [bold blue]2011 Nissan GTR - aka 'The Supercar Killer'[/bold blue]")
     print("         Horse power: 485    0-60 in: 3.3 secs    Top Speed: 190 mph ")  # Actually 193 mph
+    sleep(1)
     console.print("3 - [bold blue]2011 Corvette Z06 - The Led Zepellin of Performance Cars[/bold blue]")
     print("         Horse power: 505     0-60 in: 3.8 secs    Top Speed: ?? mph ")
+    sleep(2)
 
     # Ask for user car choice
     print('')
