@@ -54,11 +54,16 @@ class Mustang:
             print(f"Current speed is {self._speed}")
     
     def accelerate(self):
-            self._speed += 20
-            print(f"Current speed is {self._speed}")
+            #Make sure car has taken off first:
+            if self._take_off == "x":
+                self._speed += 20
+                print(f"Current speed is {self._speed}")
 
-            # Check speed
-            self.top_speed_situation()
+                # Check speed
+                self.top_speed_situation()
+            # If it has not taken off yet
+            elif self._take_off == "y":
+                print("You have to take off first.")
 
     def decelerate(self):
             self._speed -= 20
@@ -69,20 +74,24 @@ class Mustang:
                 print("\n(You know, you can go a little faster if you want.)")
 
     def nos(self):
-        # Use while loop since only one NOS shot may be used
-        if self._nos_use == "x":
-            print("Sorry. NOS shot already used.")
-            print(f"Current speed remains {self._speed}")
-        elif self._nos_use == "y":
-            # Increment speed by 10, total of +40 mph
-            for i in range (4): 
-                self._speed += 10
-                print(self._speed)
-                sleep(.5)
+            #Make sure car has taken off first:
+            if self._take_off == "x":
+                # Use if statements since only one NOS shot may be used
+                if self._nos_use == "x":
+                    print("Sorry. NOS shot already used.")
+                    print(f"Current speed remains {self._speed}")
+                elif self._nos_use == "y":
+                    # Increment speed by 10, total of +40 mph
+                    for i in range (4): 
+                        self._speed += 10
+                        print(self._speed)
+                        sleep(.5)
 
-            print("NOS used!")
-            print(f"Current speed is {self._speed}")
-            self._nos_use = "x"
+                    print("NOS used!")
+                    print(f"Current speed is {self._speed}")
+                    self._nos_use = "x"
+            elif self._take_off == "y":
+                 print("You have to take off first.")
 
             # Check speed
             self.top_speed_situation()
