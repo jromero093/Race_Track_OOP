@@ -10,34 +10,22 @@ from rich.console import Console
 # Initialize rich.console
 console = Console()
 
-# TODO Create class
-class Car():
-    # Use __init__ method to initialize the
-    # two attributes as parameters
-    def __init__(self):
-            self._car = "car"
-            self._color = "Blue"
-            self._speed = 50
-
-    # Method for testing
-    def car_name(self):
-         print("This is the car class")
-
-
+# TODO Create class (Car_Mustang will be my parent class)
 class Car_Mustang:
     # Use __init__ method to initialize the
     # three attributes as parameters
-    def __init__(self):
+    def __init__(self, driver_name):
             self._speed = 0
             self._nos_use = "y"     # To keep track of one shot of NOS
             self._take_off = "y"    # Too keep track of whether you've already taken off
+            self._driver_name = driver_name
 
     # Introduce car
     def car_name(self):
             console.print("\nYou've chosen the [bold blue]2012 Mustang Boss 302: Laguna Seca Edition[/bold blue].")
-            #sleep(3)
+            sleep(3)
             print("You're gonna have fun.\n")
-            #sleep(1)
+            sleep(1)
 
     def take_off(self):
         # Check if car has taken off already
@@ -77,7 +65,8 @@ class Car_Mustang:
                 if self._speed < 60:
                     # Encourage them to step! on! it!
                     sleep(.5)
-                    print("\n(You know, you can go a little faster if you want.)")
+                    print(f"\n(You know, you can go a little faster if you want, {self._driver_name})")
+                    sleep(.5)
             # If it has not taken off yet
             elif self._take_off == "y":
                 print("You have to take off first.")
@@ -154,11 +143,11 @@ class GTR(Car_Mustang):
     # Enter car_name specific to the GTR
     def car_name(self):
         console.print("\nYou've chosen the [bold blue]2011 Nissan GTR[/bold blue].")
-        #sleep(3)
+        sleep(3)
         print("It's a dangerous car. " , end="")
         sleep(2)
         print("Have fun!\n")
-        #sleep(1)
+        sleep(1)
 
     # A little faster acceleration than Mustang
     def accelerate(self):
@@ -201,10 +190,11 @@ class GTR(Car_Mustang):
 class Ferrari(Car_Mustang):
     def car_name(self):
         console.print("\nYou've chosen the [bold blue]1984[/bold blue][bold red] Ferrari Testarossa[/bold red].")
-        #sleep(3)
-        print("Honestly, this car's such a legend, you probably shouldn't be racing it.")
+        sleep(3)
+        print("Honestly, this car's such a legend, you probably shouldn't be driving it.")
+        sleep(2)
         print("Enjoy!\n")
-        #sleep(1)
+        sleep(1)
 
     # A little faster acceleration than Mustang
     def accelerate(self):
@@ -245,9 +235,7 @@ class Ferrari(Car_Mustang):
 
 # ---------------------------------------------- MAIN ------------------------------------------------ #
 def main():
-    # Create object from Car class
-    #car = Car()
-    #car.car_name()
+    # TODO Make and call game title from module
     game_title.title()
     sleep(1)
     print()
@@ -280,11 +268,12 @@ def main():
 
         # Create object from Class based on user choice
         if user_car == "1":
-            user_car = Car_Mustang()
+            user_car = Car_Mustang(driver_name)
         elif user_car == "2":
-            user_car = GTR()
+            user_car = GTR(driver_name)
         elif user_car == "3":
-            user_car = Ferrari()
+            user_car = Ferrari(driver_name)
+
 
         # Let them know what they're getting into
         user_car.car_name()
@@ -316,15 +305,16 @@ def main():
         sleep(1.5)
         print("There's still a couple of hours of sunlight left.")
         sleep(1)
+        # Ask if they want to drive again
         user_turn = input("Wanna drive again? You can pick another car if you want. (y)es/(n)o: ")
     
+    # If not, say goodbye
     print("\nWell, hope you enjoyed your run. Come back some time.")
     sleep(1.5)
     print("I'll pull some strings, get you the track to yourself again.")
-    sleep(2)
+    sleep(3)
     print("Seeya next time, kid.")
     sleep(3)
-                
           
 
 
