@@ -14,11 +14,12 @@ console = Console()
 class Car_Mustang:
     # Use __init__ method to initialize the
     # three attributes as parameters
-    def __init__(self, driver_name):
+    def __init__(self, driver_name, drive):
             self._speed = 0
             self._nos_use = "y"     # To keep track of one shot of NOS
-            self._take_off = "y"    # Too keep track of whether you've already taken off
-            self._driver_name = driver_name
+            self._take_off = "y"    # To keep track of whether you've already taken off
+            self._driver_name = driver_name   
+            self._drive = drive     # To keep track of state of drive loop in main()
 
     # Introduce car
     def car_name(self):
@@ -109,9 +110,15 @@ class Car_Mustang:
                 print("Pulled over.")
                 print(f"Current speed is {self._speed}")
                 sleep(2)
+
+                self._drive = "p"
             
             elif self._take_off == "y":
                 print("Very funny. Try taking off first.")
+
+    # This is to tell if drive == 'p' now, if so will exit drive loop in main()
+    def get_drive(self):
+         return self._drive
 
     def top_speed_situation(self):
             # if statements to check for top speed situation
@@ -267,19 +274,21 @@ def main():
         user_car = input("Which car do you want to drive? (1, 2, or 3): ")
 
         # Create object from Class based on user choice
+        # Also passing in drive value to reset to 'a' for multiple turns
         if user_car == "1":
-            user_car = Car_Mustang(driver_name)
+            user_car = Car_Mustang(driver_name, drive="a")
         elif user_car == "2":
-            user_car = GTR(driver_name)
+            user_car = GTR(driver_name, drive="a")
         elif user_car == "3":
-            user_car = Ferrari(driver_name)
+            user_car = Ferrari(driver_name, drive="a")
 
 
         # Let them know what they're getting into
         user_car.car_name()
 
-        # Start while loop to get user input for car control
+        # Start drive loop to get user input for car control
         drive = "a"
+        #user_car.set_drive("a")
         while drive != "p":
             
             action = input("(T)ake off | (A)ccelerate | (D)ecelerate | (N)OS! | (P)ull over: ")
@@ -298,7 +307,8 @@ def main():
 
             elif action == "p":
                 user_car.pull_over()
-                drive = "p"
+                # Check what drive =='s now
+                drive = user_car.get_drive()
         
         print()
         print(f"That was some nice driving, {driver_name}.")
