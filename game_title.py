@@ -35,7 +35,7 @@ def title():
     sleep(.5)
     print(f"{part_2} ", end="")
     sleep(.5)
-    print(f"{part_3} ")
+    print(f"{part_3}" )
 
 
 def main():

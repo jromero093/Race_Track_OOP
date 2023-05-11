@@ -1,5 +1,5 @@
 # import game_title for title
-import game_title_unused
+import game_title_unused        # Alternative game title; I've chosen not to use
 import game_title
 
 from time import sleep
@@ -19,7 +19,7 @@ class Car_Mustang:
             self._nos_use = "y"     # To keep track of one shot of NOS
             self._take_off = "y"    # To keep track of whether you've already taken off
             self._driver_name = driver_name   
-            self._drive = drive     # To keep track of state of drive loop in main()
+            self._drive = drive     # To keep track of state of drive loop (in main())
 
     # Introduce car
     def car_name(self):
@@ -145,7 +145,7 @@ class Car_Mustang:
     
 
 
-# Define child class w specifics of GTR
+# Create child class w specifics of GTR
 class GTR(Car_Mustang):
     # Enter car_name specific to the GTR
     def car_name(self):
@@ -193,7 +193,7 @@ class GTR(Car_Mustang):
                 console.print("[red]Warning[/red]: Top Speed Almost Reached\n[red]Do no accelerate[/red] (Unless you can't help it)")
          
 
-# Define child class w specifics of the Testarossa
+# Create child class w specifics of the Testarossa
 class Ferrari(Car_Mustang):
     def car_name(self):
         console.print("\nYou've chosen the [bold blue]1984[/bold blue][bold red] Ferrari Testarossa[/bold red].")
@@ -288,7 +288,6 @@ def main():
 
         # Start drive loop to get user input for car control
         drive = "a"
-        #user_car.set_drive("a")
         while drive != "p":
             
             action = input("(T)ake off | (A)ccelerate | (D)ecelerate | (N)OS! | (P)ull over: ")
@@ -307,7 +306,7 @@ def main():
 
             elif action == "p":
                 user_car.pull_over()
-                # Check what drive =='s now
+                # Check what drive =='s now w getter
                 drive = user_car.get_drive()
         
         print()
